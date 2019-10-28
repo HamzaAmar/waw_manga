@@ -1,4 +1,8 @@
 type User {
-  id: ID! @id
+  id: ID! @id @unique
   name: String!
+  email: String! @unique
+  isValide: Boolean! @default(value: false)
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
 }
