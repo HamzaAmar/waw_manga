@@ -1,0 +1,59 @@
+type User {
+  id: ID! @id
+  name: String!
+  email: String! @unique
+  image: String
+  mangas: [Manga!]! @relation(link:TABLE , name: "Favorite")
+  isVerified: Boolean! @default(value: false)
+  createdAt: DateTime! @createdAt
+}
+
+type Favorite @relationTable {
+  manga: Manga!
+  user: User!
+}
+
+type Manga {
+  id: ID! @id
+  title: String! @unique
+  description: String!
+  image: String
+  genres: [Genre!]! @relation(link: TABLE)
+  users: [User!]!  @relation(name: "Favorite")
+  published: DateTime!
+  episodes: [Episode!]!
+  authors: [Author]
+  votes: Int! @default(value: 0)
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+}
+
+type Author {
+  id: ID! @id
+  name: String! @unique
+  works: [Manga!]! @relation(link: TABLE)
+  image: String
+}
+
+type Episode {
+  id: ID! @id
+  title: String!
+  number: Int!
+  manga: Manga! @relation(link: INLINE)
+  votes: Int! @default(value: 0)
+  images: [Image!]!
+  reades: Int! @default(value: 0)
+  createdAt: DateTime! @createdAt
+}
+
+type Image {
+  id: ID! @id
+  manga: Manga! @relation(link: INLINE)
+  episode: Episode! @relation(link: INLINE)
+  image: String!
+}
+
+type Genre {
+   id: ID! @id
+   name: String! @unique
+}

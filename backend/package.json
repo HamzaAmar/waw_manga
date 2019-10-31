@@ -1,0 +1,16 @@
+{
+  "name": "beckend",
+  "version": "1.0.0",
+  "description": "prisma and graphql yoga",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon src/index.js"
+  },
+  "author": "Hamza Miloud amar",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "graphql-yoga": "^1.18.3",
+    "prisma-binding": "^2.3.16"
+  }
+}

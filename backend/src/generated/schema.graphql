@@ -1,0 +1,1811 @@
+type AggregateAuthor {
+  count: Int!
+}
+
+type AggregateEpisode {
+  count: Int!
+}
+
+type AggregateGenre {
+  count: Int!
+}
+
+type AggregateImage {
+  count: Int!
+}
+
+type AggregateManga {
+  count: Int!
+}
+
+type AggregateUser {
+  count: Int!
+}
+
+type Author {
+  id: ID!
+  name: String!
+  works(where: MangaWhereInput, orderBy: MangaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Manga!]
+  image: String
+}
+
+type AuthorConnection {
+  pageInfo: PageInfo!
+  edges: [AuthorEdge]!
+  aggregate: AggregateAuthor!
+}
+
+input AuthorCreateInput {
+  id: ID
+  name: String!
+  works: MangaCreateManyWithoutAuthorsInput
+  image: String
+}
+
+input AuthorCreateManyWithoutWorksInput {
+  create: [AuthorCreateWithoutWorksInput!]
+  connect: [AuthorWhereUniqueInput!]
+}
+
+input AuthorCreateWithoutWorksInput {
+  id: ID
+  name: String!
+  image: String
+}
+
+type AuthorEdge {
+  node: Author!
+  cursor: String!
+}
+
+enum AuthorOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  image_ASC
+  image_DESC
+}
+
+type AuthorPreviousValues {
+  id: ID!
+  name: String!
+  image: String
+}
+
+input AuthorScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  image: String
+  image_not: String
+  image_in: [String!]
+  image_not_in: [String!]
+  image_lt: String
+  image_lte: String
+  image_gt: String
+  image_gte: String
+  image_contains: String
+  image_not_contains: String
+  image_starts_with: String
+  image_not_starts_with: String
+  image_ends_with: String
+  image_not_ends_with: String
+  AND: [AuthorScalarWhereInput!]
+  OR: [AuthorScalarWhereInput!]
+  NOT: [AuthorScalarWhereInput!]
+}
+
+type AuthorSubscriptionPayload {
+  mutation: MutationType!
+  node: Author
+  updatedFields: [String!]
+  previousValues: AuthorPreviousValues
+}
+
+input AuthorSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: AuthorWhereInput
+  AND: [AuthorSubscriptionWhereInput!]
+  OR: [AuthorSubscriptionWhereInput!]
+  NOT: [AuthorSubscriptionWhereInput!]
+}
+
+input AuthorUpdateInput {
+  name: String
+  works: MangaUpdateManyWithoutAuthorsInput
+  image: String
+}
+
+input AuthorUpdateManyDataInput {
+  name: String
+  image: String
+}
+
+input AuthorUpdateManyMutationInput {
+  name: String
+  image: String
+}
+
+input AuthorUpdateManyWithoutWorksInput {
+  create: [AuthorCreateWithoutWorksInput!]
+  delete: [AuthorWhereUniqueInput!]
+  connect: [AuthorWhereUniqueInput!]
+  set: [AuthorWhereUniqueInput!]
+  disconnect: [AuthorWhereUniqueInput!]
+  update: [AuthorUpdateWithWhereUniqueWithoutWorksInput!]
+  upsert: [AuthorUpsertWithWhereUniqueWithoutWorksInput!]
+  deleteMany: [AuthorScalarWhereInput!]
+  updateMany: [AuthorUpdateManyWithWhereNestedInput!]
+}
+
+input AuthorUpdateManyWithWhereNestedInput {
+  where: AuthorScalarWhereInput!
+  data: AuthorUpdateManyDataInput!
+}
+
+input AuthorUpdateWithoutWorksDataInput {
+  name: String
+  image: String
+}
+
+input AuthorUpdateWithWhereUniqueWithoutWorksInput {
+  where: AuthorWhereUniqueInput!
+  data: AuthorUpdateWithoutWorksDataInput!
+}
+
+input AuthorUpsertWithWhereUniqueWithoutWorksInput {
+  where: AuthorWhereUniqueInput!
+  update: AuthorUpdateWithoutWorksDataInput!
+  create: AuthorCreateWithoutWorksInput!
+}
+
+input AuthorWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  works_every: MangaWhereInput
+  works_some: MangaWhereInput
+  works_none: MangaWhereInput
+  image: String
+  image_not: String
+  image_in: [String!]
+  image_not_in: [String!]
+  image_lt: String
+  image_lte: String
+  image_gt: String
+  image_gte: String
+  image_contains: String
+  image_not_contains: String
+  image_starts_with: String
+  image_not_starts_with: String
+  image_ends_with: String
+  image_not_ends_with: String
+  AND: [AuthorWhereInput!]
+  OR: [AuthorWhereInput!]
+  NOT: [AuthorWhereInput!]
+}
+
+input AuthorWhereUniqueInput {
+  id: ID
+  name: String
+}
+
+type BatchPayload {
+  count: Long!
+}
+
+scalar DateTime
+
+type Episode {
+  id: ID!
+  title: String!
+  number: Int!
+  manga: Manga!
+  votes: Int!
+  images(where: ImageWhereInput, orderBy: ImageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Image!]
+  reades: Int!
+  createdAt: DateTime!
+}
+
+type EpisodeConnection {
+  pageInfo: PageInfo!
+  edges: [EpisodeEdge]!
+  aggregate: AggregateEpisode!
+}
+
+input EpisodeCreateInput {
+  id: ID
+  title: String!
+  number: Int!
+  manga: MangaCreateOneWithoutEpisodesInput!
+  votes: Int
+  images: ImageCreateManyWithoutEpisodeInput
+  reades: Int
+}
+
+input EpisodeCreateManyWithoutMangaInput {
+  create: [EpisodeCreateWithoutMangaInput!]
+  connect: [EpisodeWhereUniqueInput!]
+}
+
+input EpisodeCreateOneWithoutImagesInput {
+  create: EpisodeCreateWithoutImagesInput
+  connect: EpisodeWhereUniqueInput
+}
+
+input EpisodeCreateWithoutImagesInput {
+  id: ID
+  title: String!
+  number: Int!
+  manga: MangaCreateOneWithoutEpisodesInput!
+  votes: Int
+  reades: Int
+}
+
+input EpisodeCreateWithoutMangaInput {
+  id: ID
+  title: String!
+  number: Int!
+  votes: Int
+  images: ImageCreateManyWithoutEpisodeInput
+  reades: Int
+}
+
+type EpisodeEdge {
+  node: Episode!
+  cursor: String!
+}
+
+enum EpisodeOrderByInput {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  number_ASC
+  number_DESC
+  votes_ASC
+  votes_DESC
+  reades_ASC
+  reades_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type EpisodePreviousValues {
+  id: ID!
+  title: String!
+  number: Int!
+  votes: Int!
+  reades: Int!
+  createdAt: DateTime!
+}
+
+input EpisodeScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  number: Int
+  number_not: Int
+  number_in: [Int!]
+  number_not_in: [Int!]
+  number_lt: Int
+  number_lte: Int
+  number_gt: Int
+  number_gte: Int
+  votes: Int
+  votes_not: Int
+  votes_in: [Int!]
+  votes_not_in: [Int!]
+  votes_lt: Int
+  votes_lte: Int
+  votes_gt: Int
+  votes_gte: Int
+  reades: Int
+  reades_not: Int
+  reades_in: [Int!]
+  reades_not_in: [Int!]
+  reades_lt: Int
+  reades_lte: Int
+  reades_gt: Int
+  reades_gte: Int
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  AND: [EpisodeScalarWhereInput!]
+  OR: [EpisodeScalarWhereInput!]
+  NOT: [EpisodeScalarWhereInput!]
+}
+
+type EpisodeSubscriptionPayload {
+  mutation: MutationType!
+  node: Episode
+  updatedFields: [String!]
+  previousValues: EpisodePreviousValues
+}
+
+input EpisodeSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: EpisodeWhereInput
+  AND: [EpisodeSubscriptionWhereInput!]
+  OR: [EpisodeSubscriptionWhereInput!]
+  NOT: [EpisodeSubscriptionWhereInput!]
+}
+
+input EpisodeUpdateInput {
+  title: String
+  number: Int
+  manga: MangaUpdateOneRequiredWithoutEpisodesInput
+  votes: Int
+  images: ImageUpdateManyWithoutEpisodeInput
+  reades: Int
+}
+
+input EpisodeUpdateManyDataInput {
+  title: String
+  number: Int
+  votes: Int
+  reades: Int
+}
+
+input EpisodeUpdateManyMutationInput {
+  title: String
+  number: Int
+  votes: Int
+  reades: Int
+}
+
+input EpisodeUpdateManyWithoutMangaInput {
+  create: [EpisodeCreateWithoutMangaInput!]
+  delete: [EpisodeWhereUniqueInput!]
+  connect: [EpisodeWhereUniqueInput!]
+  set: [EpisodeWhereUniqueInput!]
+  disconnect: [EpisodeWhereUniqueInput!]
+  update: [EpisodeUpdateWithWhereUniqueWithoutMangaInput!]
+  upsert: [EpisodeUpsertWithWhereUniqueWithoutMangaInput!]
+  deleteMany: [EpisodeScalarWhereInput!]
+  updateMany: [EpisodeUpdateManyWithWhereNestedInput!]
+}
+
+input EpisodeUpdateManyWithWhereNestedInput {
+  where: EpisodeScalarWhereInput!
+  data: EpisodeUpdateManyDataInput!
+}
+
+input EpisodeUpdateOneRequiredWithoutImagesInput {
+  create: EpisodeCreateWithoutImagesInput
+  update: EpisodeUpdateWithoutImagesDataInput
+  upsert: EpisodeUpsertWithoutImagesInput
+  connect: EpisodeWhereUniqueInput
+}
+
+input EpisodeUpdateWithoutImagesDataInput {
+  title: String
+  number: Int
+  manga: MangaUpdateOneRequiredWithoutEpisodesInput
+  votes: Int
+  reades: Int
+}
+
+input EpisodeUpdateWithoutMangaDataInput {
+  title: String
+  number: Int
+  votes: Int
+  images: ImageUpdateManyWithoutEpisodeInput
+  reades: Int
+}
+
+input EpisodeUpdateWithWhereUniqueWithoutMangaInput {
+  where: EpisodeWhereUniqueInput!
+  data: EpisodeUpdateWithoutMangaDataInput!
+}
+
+input EpisodeUpsertWithoutImagesInput {
+  update: EpisodeUpdateWithoutImagesDataInput!
+  create: EpisodeCreateWithoutImagesInput!
+}
+
+input EpisodeUpsertWithWhereUniqueWithoutMangaInput {
+  where: EpisodeWhereUniqueInput!
+  update: EpisodeUpdateWithoutMangaDataInput!
+  create: EpisodeCreateWithoutMangaInput!
+}
+
+input EpisodeWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  number: Int
+  number_not: Int
+  number_in: [Int!]
+  number_not_in: [Int!]
+  number_lt: Int
+  number_lte: Int
+  number_gt: Int
+  number_gte: Int
+  manga: MangaWhereInput
+  votes: Int
+  votes_not: Int
+  votes_in: [Int!]
+  votes_not_in: [Int!]
+  votes_lt: Int
+  votes_lte: Int
+  votes_gt: Int
+  votes_gte: Int
+  images_every: ImageWhereInput
+  images_some: ImageWhereInput
+  images_none: ImageWhereInput
+  reades: Int
+  reades_not: Int
+  reades_in: [Int!]
+  reades_not_in: [Int!]
+  reades_lt: Int
+  reades_lte: Int
+  reades_gt: Int
+  reades_gte: Int
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  AND: [EpisodeWhereInput!]
+  OR: [EpisodeWhereInput!]
+  NOT: [EpisodeWhereInput!]
+}
+
+input EpisodeWhereUniqueInput {
+  id: ID
+}
+
+type Genre {
+  id: ID!
+  name: String!
+}
+
+type GenreConnection {
+  pageInfo: PageInfo!
+  edges: [GenreEdge]!
+  aggregate: AggregateGenre!
+}
+
+input GenreCreateInput {
+  id: ID
+  name: String!
+}
+
+input GenreCreateManyInput {
+  create: [GenreCreateInput!]
+  connect: [GenreWhereUniqueInput!]
+}
+
+type GenreEdge {
+  node: Genre!
+  cursor: String!
+}
+
+enum GenreOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+}
+
+type GenrePreviousValues {
+  id: ID!
+  name: String!
+}
+
+input GenreScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  AND: [GenreScalarWhereInput!]
+  OR: [GenreScalarWhereInput!]
+  NOT: [GenreScalarWhereInput!]
+}
+
+type GenreSubscriptionPayload {
+  mutation: MutationType!
+  node: Genre
+  updatedFields: [String!]
+  previousValues: GenrePreviousValues
+}
+
+input GenreSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: GenreWhereInput
+  AND: [GenreSubscriptionWhereInput!]
+  OR: [GenreSubscriptionWhereInput!]
+  NOT: [GenreSubscriptionWhereInput!]
+}
+
+input GenreUpdateDataInput {
+  name: String
+}
+
+input GenreUpdateInput {
+  name: String
+}
+
+input GenreUpdateManyDataInput {
+  name: String
+}
+
+input GenreUpdateManyInput {
+  create: [GenreCreateInput!]
+  update: [GenreUpdateWithWhereUniqueNestedInput!]
+  upsert: [GenreUpsertWithWhereUniqueNestedInput!]
+  delete: [GenreWhereUniqueInput!]
+  connect: [GenreWhereUniqueInput!]
+  set: [GenreWhereUniqueInput!]
+  disconnect: [GenreWhereUniqueInput!]
+  deleteMany: [GenreScalarWhereInput!]
+  updateMany: [GenreUpdateManyWithWhereNestedInput!]
+}
+
+input GenreUpdateManyMutationInput {
+  name: String
+}
+
+input GenreUpdateManyWithWhereNestedInput {
+  where: GenreScalarWhereInput!
+  data: GenreUpdateManyDataInput!
+}
+
+input GenreUpdateWithWhereUniqueNestedInput {
+  where: GenreWhereUniqueInput!
+  data: GenreUpdateDataInput!
+}
+
+input GenreUpsertWithWhereUniqueNestedInput {
+  where: GenreWhereUniqueInput!
+  update: GenreUpdateDataInput!
+  create: GenreCreateInput!
+}
+
+input GenreWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  AND: [GenreWhereInput!]
+  OR: [GenreWhereInput!]
+  NOT: [GenreWhereInput!]
+}
+
+input GenreWhereUniqueInput {
+  id: ID
+  name: String
+}
+
+type Image {
+  id: ID!
+  manga: Manga!
+  episode: Episode!
+  image: String!
+}
+
+type ImageConnection {
+  pageInfo: PageInfo!
+  edges: [ImageEdge]!
+  aggregate: AggregateImage!
+}
+
+input ImageCreateInput {
+  id: ID
+  manga: MangaCreateOneInput!
+  episode: EpisodeCreateOneWithoutImagesInput!
+  image: String!
+}
+
+input ImageCreateManyWithoutEpisodeInput {
+  create: [ImageCreateWithoutEpisodeInput!]
+  connect: [ImageWhereUniqueInput!]
+}
+
+input ImageCreateWithoutEpisodeInput {
+  id: ID
+  manga: MangaCreateOneInput!
+  image: String!
+}
+
+type ImageEdge {
+  node: Image!
+  cursor: String!
+}
+
+enum ImageOrderByInput {
+  id_ASC
+  id_DESC
+  image_ASC
+  image_DESC
+}
+
+type ImagePreviousValues {
+  id: ID!
+  image: String!
+}
+
+input ImageScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  image: String
+  image_not: String
+  image_in: [String!]
+  image_not_in: [String!]
+  image_lt: String
+  image_lte: String
+  image_gt: String
+  image_gte: String
+  image_contains: String
+  image_not_contains: String
+  image_starts_with: String
+  image_not_starts_with: String
+  image_ends_with: String
+  image_not_ends_with: String
+  AND: [ImageScalarWhereInput!]
+  OR: [ImageScalarWhereInput!]
+  NOT: [ImageScalarWhereInput!]
+}
+
+type ImageSubscriptionPayload {
+  mutation: MutationType!
+  node: Image
+  updatedFields: [String!]
+  previousValues: ImagePreviousValues
+}
+
+input ImageSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: ImageWhereInput
+  AND: [ImageSubscriptionWhereInput!]
+  OR: [ImageSubscriptionWhereInput!]
+  NOT: [ImageSubscriptionWhereInput!]
+}
+
+input ImageUpdateInput {
+  manga: MangaUpdateOneRequiredInput
+  episode: EpisodeUpdateOneRequiredWithoutImagesInput
+  image: String
+}
+
+input ImageUpdateManyDataInput {
+  image: String
+}
+
+input ImageUpdateManyMutationInput {
+  image: String
+}
+
+input ImageUpdateManyWithoutEpisodeInput {
+  create: [ImageCreateWithoutEpisodeInput!]
+  delete: [ImageWhereUniqueInput!]
+  connect: [ImageWhereUniqueInput!]
+  set: [ImageWhereUniqueInput!]
+  disconnect: [ImageWhereUniqueInput!]
+  update: [ImageUpdateWithWhereUniqueWithoutEpisodeInput!]
+  upsert: [ImageUpsertWithWhereUniqueWithoutEpisodeInput!]
+  deleteMany: [ImageScalarWhereInput!]
+  updateMany: [ImageUpdateManyWithWhereNestedInput!]
+}
+
+input ImageUpdateManyWithWhereNestedInput {
+  where: ImageScalarWhereInput!
+  data: ImageUpdateManyDataInput!
+}
+
+input ImageUpdateWithoutEpisodeDataInput {
+  manga: MangaUpdateOneRequiredInput
+  image: String
+}
+
+input ImageUpdateWithWhereUniqueWithoutEpisodeInput {
+  where: ImageWhereUniqueInput!
+  data: ImageUpdateWithoutEpisodeDataInput!
+}
+
+input ImageUpsertWithWhereUniqueWithoutEpisodeInput {
+  where: ImageWhereUniqueInput!
+  update: ImageUpdateWithoutEpisodeDataInput!
+  create: ImageCreateWithoutEpisodeInput!
+}
+
+input ImageWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  manga: MangaWhereInput
+  episode: EpisodeWhereInput
+  image: String
+  image_not: String
+  image_in: [String!]
+  image_not_in: [String!]
+  image_lt: String
+  image_lte: String
+  image_gt: String
+  image_gte: String
+  image_contains: String
+  image_not_contains: String
+  image_starts_with: String
+  image_not_starts_with: String
+  image_ends_with: String
+  image_not_ends_with: String
+  AND: [ImageWhereInput!]
+  OR: [ImageWhereInput!]
+  NOT: [ImageWhereInput!]
+}
+
+input ImageWhereUniqueInput {
+  id: ID
+}
+
+scalar Long
+
+type Manga {
+  id: ID!
+  title: String!
+  description: String!
+  image: String
+  genres(where: GenreWhereInput, orderBy: GenreOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Genre!]
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User!]
+  published: DateTime!
+  episodes(where: EpisodeWhereInput, orderBy: EpisodeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Episode!]
+  authors(where: AuthorWhereInput, orderBy: AuthorOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Author!]
+  votes: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type MangaConnection {
+  pageInfo: PageInfo!
+  edges: [MangaEdge]!
+  aggregate: AggregateManga!
+}
+
+input MangaCreateInput {
+  id: ID
+  title: String!
+  description: String!
+  image: String
+  genres: GenreCreateManyInput
+  users: UserCreateManyWithoutMangasInput
+  published: DateTime!
+  episodes: EpisodeCreateManyWithoutMangaInput
+  authors: AuthorCreateManyWithoutWorksInput
+  votes: Int
+}
+
+input MangaCreateManyWithoutAuthorsInput {
+  create: [MangaCreateWithoutAuthorsInput!]
+  connect: [MangaWhereUniqueInput!]
+}
+
+input MangaCreateManyWithoutUsersInput {
+  create: [MangaCreateWithoutUsersInput!]
+  connect: [MangaWhereUniqueInput!]
+}
+
+input MangaCreateOneInput {
+  create: MangaCreateInput
+  connect: MangaWhereUniqueInput
+}
+
+input MangaCreateOneWithoutEpisodesInput {
+  create: MangaCreateWithoutEpisodesInput
+  connect: MangaWhereUniqueInput
+}
+
+input MangaCreateWithoutAuthorsInput {
+  id: ID
+  title: String!
+  description: String!
+  image: String
+  genres: GenreCreateManyInput
+  users: UserCreateManyWithoutMangasInput
+  published: DateTime!
+  episodes: EpisodeCreateManyWithoutMangaInput
+  votes: Int
+}
+
+input MangaCreateWithoutEpisodesInput {
+  id: ID
+  title: String!
+  description: String!
+  image: String
+  genres: GenreCreateManyInput
+  users: UserCreateManyWithoutMangasInput
+  published: DateTime!
+  authors: AuthorCreateManyWithoutWorksInput
+  votes: Int
+}
+
+input MangaCreateWithoutUsersInput {
+  id: ID
+  title: String!
+  description: String!
+  image: String
+  genres: GenreCreateManyInput
+  published: DateTime!
+  episodes: EpisodeCreateManyWithoutMangaInput
+  authors: AuthorCreateManyWithoutWorksInput
+  votes: Int
+}
+
+type MangaEdge {
+  node: Manga!
+  cursor: String!
+}
+
+enum MangaOrderByInput {
+  id_ASC
+  id_DESC
+  title_ASC
+  title_DESC
+  description_ASC
+  description_DESC
+  image_ASC
+  image_DESC
+  published_ASC
+  published_DESC
+  votes_ASC
+  votes_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
+}
+
+type MangaPreviousValues {
+  id: ID!
+  title: String!
+  description: String!
+  image: String
+  published: DateTime!
+  votes: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input MangaScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  image: String
+  image_not: String
+  image_in: [String!]
+  image_not_in: [String!]
+  image_lt: String
+  image_lte: String
+  image_gt: String
+  image_gte: String
+  image_contains: String
+  image_not_contains: String
+  image_starts_with: String
+  image_not_starts_with: String
+  image_ends_with: String
+  image_not_ends_with: String
+  published: DateTime
+  published_not: DateTime
+  published_in: [DateTime!]
+  published_not_in: [DateTime!]
+  published_lt: DateTime
+  published_lte: DateTime
+  published_gt: DateTime
+  published_gte: DateTime
+  votes: Int
+  votes_not: Int
+  votes_in: [Int!]
+  votes_not_in: [Int!]
+  votes_lt: Int
+  votes_lte: Int
+  votes_gt: Int
+  votes_gte: Int
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [MangaScalarWhereInput!]
+  OR: [MangaScalarWhereInput!]
+  NOT: [MangaScalarWhereInput!]
+}
+
+type MangaSubscriptionPayload {
+  mutation: MutationType!
+  node: Manga
+  updatedFields: [String!]
+  previousValues: MangaPreviousValues
+}
+
+input MangaSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: MangaWhereInput
+  AND: [MangaSubscriptionWhereInput!]
+  OR: [MangaSubscriptionWhereInput!]
+  NOT: [MangaSubscriptionWhereInput!]
+}
+
+input MangaUpdateDataInput {
+  title: String
+  description: String
+  image: String
+  genres: GenreUpdateManyInput
+  users: UserUpdateManyWithoutMangasInput
+  published: DateTime
+  episodes: EpisodeUpdateManyWithoutMangaInput
+  authors: AuthorUpdateManyWithoutWorksInput
+  votes: Int
+}
+
+input MangaUpdateInput {
+  title: String
+  description: String
+  image: String
+  genres: GenreUpdateManyInput
+  users: UserUpdateManyWithoutMangasInput
+  published: DateTime
+  episodes: EpisodeUpdateManyWithoutMangaInput
+  authors: AuthorUpdateManyWithoutWorksInput
+  votes: Int
+}
+
+input MangaUpdateManyDataInput {
+  title: String
+  description: String
+  image: String
+  published: DateTime
+  votes: Int
+}
+
+input MangaUpdateManyMutationInput {
+  title: String
+  description: String
+  image: String
+  published: DateTime
+  votes: Int
+}
+
+input MangaUpdateManyWithoutAuthorsInput {
+  create: [MangaCreateWithoutAuthorsInput!]
+  delete: [MangaWhereUniqueInput!]
+  connect: [MangaWhereUniqueInput!]
+  set: [MangaWhereUniqueInput!]
+  disconnect: [MangaWhereUniqueInput!]
+  update: [MangaUpdateWithWhereUniqueWithoutAuthorsInput!]
+  upsert: [MangaUpsertWithWhereUniqueWithoutAuthorsInput!]
+  deleteMany: [MangaScalarWhereInput!]
+  updateMany: [MangaUpdateManyWithWhereNestedInput!]
+}
+
+input MangaUpdateManyWithoutUsersInput {
+  create: [MangaCreateWithoutUsersInput!]
+  delete: [MangaWhereUniqueInput!]
+  connect: [MangaWhereUniqueInput!]
+  set: [MangaWhereUniqueInput!]
+  disconnect: [MangaWhereUniqueInput!]
+  update: [MangaUpdateWithWhereUniqueWithoutUsersInput!]
+  upsert: [MangaUpsertWithWhereUniqueWithoutUsersInput!]
+  deleteMany: [MangaScalarWhereInput!]
+  updateMany: [MangaUpdateManyWithWhereNestedInput!]
+}
+
+input MangaUpdateManyWithWhereNestedInput {
+  where: MangaScalarWhereInput!
+  data: MangaUpdateManyDataInput!
+}
+
+input MangaUpdateOneRequiredInput {
+  create: MangaCreateInput
+  update: MangaUpdateDataInput
+  upsert: MangaUpsertNestedInput
+  connect: MangaWhereUniqueInput
+}
+
+input MangaUpdateOneRequiredWithoutEpisodesInput {
+  create: MangaCreateWithoutEpisodesInput
+  update: MangaUpdateWithoutEpisodesDataInput
+  upsert: MangaUpsertWithoutEpisodesInput
+  connect: MangaWhereUniqueInput
+}
+
+input MangaUpdateWithoutAuthorsDataInput {
+  title: String
+  description: String
+  image: String
+  genres: GenreUpdateManyInput
+  users: UserUpdateManyWithoutMangasInput
+  published: DateTime
+  episodes: EpisodeUpdateManyWithoutMangaInput
+  votes: Int
+}
+
+input MangaUpdateWithoutEpisodesDataInput {
+  title: String
+  description: String
+  image: String
+  genres: GenreUpdateManyInput
+  users: UserUpdateManyWithoutMangasInput
+  published: DateTime
+  authors: AuthorUpdateManyWithoutWorksInput
+  votes: Int
+}
+
+input MangaUpdateWithoutUsersDataInput {
+  title: String
+  description: String
+  image: String
+  genres: GenreUpdateManyInput
+  published: DateTime
+  episodes: EpisodeUpdateManyWithoutMangaInput
+  authors: AuthorUpdateManyWithoutWorksInput
+  votes: Int
+}
+
+input MangaUpdateWithWhereUniqueWithoutAuthorsInput {
+  where: MangaWhereUniqueInput!
+  data: MangaUpdateWithoutAuthorsDataInput!
+}
+
+input MangaUpdateWithWhereUniqueWithoutUsersInput {
+  where: MangaWhereUniqueInput!
+  data: MangaUpdateWithoutUsersDataInput!
+}
+
+input MangaUpsertNestedInput {
+  update: MangaUpdateDataInput!
+  create: MangaCreateInput!
+}
+
+input MangaUpsertWithoutEpisodesInput {
+  update: MangaUpdateWithoutEpisodesDataInput!
+  create: MangaCreateWithoutEpisodesInput!
+}
+
+input MangaUpsertWithWhereUniqueWithoutAuthorsInput {
+  where: MangaWhereUniqueInput!
+  update: MangaUpdateWithoutAuthorsDataInput!
+  create: MangaCreateWithoutAuthorsInput!
+}
+
+input MangaUpsertWithWhereUniqueWithoutUsersInput {
+  where: MangaWhereUniqueInput!
+  update: MangaUpdateWithoutUsersDataInput!
+  create: MangaCreateWithoutUsersInput!
+}
+
+input MangaWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  title: String
+  title_not: String
+  title_in: [String!]
+  title_not_in: [String!]
+  title_lt: String
+  title_lte: String
+  title_gt: String
+  title_gte: String
+  title_contains: String
+  title_not_contains: String
+  title_starts_with: String
+  title_not_starts_with: String
+  title_ends_with: String
+  title_not_ends_with: String
+  description: String
+  description_not: String
+  description_in: [String!]
+  description_not_in: [String!]
+  description_lt: String
+  description_lte: String
+  description_gt: String
+  description_gte: String
+  description_contains: String
+  description_not_contains: String
+  description_starts_with: String
+  description_not_starts_with: String
+  description_ends_with: String
+  description_not_ends_with: String
+  image: String
+  image_not: String
+  image_in: [String!]
+  image_not_in: [String!]
+  image_lt: String
+  image_lte: String
+  image_gt: String
+  image_gte: String
+  image_contains: String
+  image_not_contains: String
+  image_starts_with: String
+  image_not_starts_with: String
+  image_ends_with: String
+  image_not_ends_with: String
+  genres_every: GenreWhereInput
+  genres_some: GenreWhereInput
+  genres_none: GenreWhereInput
+  users_every: UserWhereInput
+  users_some: UserWhereInput
+  users_none: UserWhereInput
+  published: DateTime
+  published_not: DateTime
+  published_in: [DateTime!]
+  published_not_in: [DateTime!]
+  published_lt: DateTime
+  published_lte: DateTime
+  published_gt: DateTime
+  published_gte: DateTime
+  episodes_every: EpisodeWhereInput
+  episodes_some: EpisodeWhereInput
+  episodes_none: EpisodeWhereInput
+  authors_every: AuthorWhereInput
+  authors_some: AuthorWhereInput
+  authors_none: AuthorWhereInput
+  votes: Int
+  votes_not: Int
+  votes_in: [Int!]
+  votes_not_in: [Int!]
+  votes_lt: Int
+  votes_lte: Int
+  votes_gt: Int
+  votes_gte: Int
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  AND: [MangaWhereInput!]
+  OR: [MangaWhereInput!]
+  NOT: [MangaWhereInput!]
+}
+
+input MangaWhereUniqueInput {
+  id: ID
+  title: String
+}
+
+type Mutation {
+  createAuthor(data: AuthorCreateInput!): Author!
+  updateAuthor(data: AuthorUpdateInput!, where: AuthorWhereUniqueInput!): Author
+  updateManyAuthors(data: AuthorUpdateManyMutationInput!, where: AuthorWhereInput): BatchPayload!
+  upsertAuthor(where: AuthorWhereUniqueInput!, create: AuthorCreateInput!, update: AuthorUpdateInput!): Author!
+  deleteAuthor(where: AuthorWhereUniqueInput!): Author
+  deleteManyAuthors(where: AuthorWhereInput): BatchPayload!
+  createEpisode(data: EpisodeCreateInput!): Episode!
+  updateEpisode(data: EpisodeUpdateInput!, where: EpisodeWhereUniqueInput!): Episode
+  updateManyEpisodes(data: EpisodeUpdateManyMutationInput!, where: EpisodeWhereInput): BatchPayload!
+  upsertEpisode(where: EpisodeWhereUniqueInput!, create: EpisodeCreateInput!, update: EpisodeUpdateInput!): Episode!
+  deleteEpisode(where: EpisodeWhereUniqueInput!): Episode
+  deleteManyEpisodes(where: EpisodeWhereInput): BatchPayload!
+  createGenre(data: GenreCreateInput!): Genre!
+  updateGenre(data: GenreUpdateInput!, where: GenreWhereUniqueInput!): Genre
+  updateManyGenres(data: GenreUpdateManyMutationInput!, where: GenreWhereInput): BatchPayload!
+  upsertGenre(where: GenreWhereUniqueInput!, create: GenreCreateInput!, update: GenreUpdateInput!): Genre!
+  deleteGenre(where: GenreWhereUniqueInput!): Genre
+  deleteManyGenres(where: GenreWhereInput): BatchPayload!
+  createImage(data: ImageCreateInput!): Image!
+  updateImage(data: ImageUpdateInput!, where: ImageWhereUniqueInput!): Image
+  updateManyImages(data: ImageUpdateManyMutationInput!, where: ImageWhereInput): BatchPayload!
+  upsertImage(where: ImageWhereUniqueInput!, create: ImageCreateInput!, update: ImageUpdateInput!): Image!
+  deleteImage(where: ImageWhereUniqueInput!): Image
+  deleteManyImages(where: ImageWhereInput): BatchPayload!
+  createManga(data: MangaCreateInput!): Manga!
+  updateManga(data: MangaUpdateInput!, where: MangaWhereUniqueInput!): Manga
+  updateManyMangas(data: MangaUpdateManyMutationInput!, where: MangaWhereInput): BatchPayload!
+  upsertManga(where: MangaWhereUniqueInput!, create: MangaCreateInput!, update: MangaUpdateInput!): Manga!
+  deleteManga(where: MangaWhereUniqueInput!): Manga
+  deleteManyMangas(where: MangaWhereInput): BatchPayload!
+  createUser(data: UserCreateInput!): User!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+  updateManyUsers(data: UserUpdateManyMutationInput!, where: UserWhereInput): BatchPayload!
+  upsertUser(where: UserWhereUniqueInput!, create: UserCreateInput!, update: UserUpdateInput!): User!
+  deleteUser(where: UserWhereUniqueInput!): User
+  deleteManyUsers(where: UserWhereInput): BatchPayload!
+}
+
+enum MutationType {
+  CREATED
+  UPDATED
+  DELETED
+}
+
+interface Node {
+  id: ID!
+}
+
+type PageInfo {
+  hasNextPage: Boolean!
+  hasPreviousPage: Boolean!
+  startCursor: String
+  endCursor: String
+}
+
+type Query {
+  author(where: AuthorWhereUniqueInput!): Author
+  authors(where: AuthorWhereInput, orderBy: AuthorOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Author]!
+  authorsConnection(where: AuthorWhereInput, orderBy: AuthorOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): AuthorConnection!
+  episode(where: EpisodeWhereUniqueInput!): Episode
+  episodes(where: EpisodeWhereInput, orderBy: EpisodeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Episode]!
+  episodesConnection(where: EpisodeWhereInput, orderBy: EpisodeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): EpisodeConnection!
+  genre(where: GenreWhereUniqueInput!): Genre
+  genres(where: GenreWhereInput, orderBy: GenreOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Genre]!
+  genresConnection(where: GenreWhereInput, orderBy: GenreOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): GenreConnection!
+  image(where: ImageWhereUniqueInput!): Image
+  images(where: ImageWhereInput, orderBy: ImageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Image]!
+  imagesConnection(where: ImageWhereInput, orderBy: ImageOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ImageConnection!
+  manga(where: MangaWhereUniqueInput!): Manga
+  mangas(where: MangaWhereInput, orderBy: MangaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Manga]!
+  mangasConnection(where: MangaWhereInput, orderBy: MangaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): MangaConnection!
+  user(where: UserWhereUniqueInput!): User
+  users(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [User]!
+  usersConnection(where: UserWhereInput, orderBy: UserOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): UserConnection!
+  node(id: ID!): Node
+}
+
+type Subscription {
+  author(where: AuthorSubscriptionWhereInput): AuthorSubscriptionPayload
+  episode(where: EpisodeSubscriptionWhereInput): EpisodeSubscriptionPayload
+  genre(where: GenreSubscriptionWhereInput): GenreSubscriptionPayload
+  image(where: ImageSubscriptionWhereInput): ImageSubscriptionPayload
+  manga(where: MangaSubscriptionWhereInput): MangaSubscriptionPayload
+  user(where: UserSubscriptionWhereInput): UserSubscriptionPayload
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  image: String
+  mangas(where: MangaWhereInput, orderBy: MangaOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Manga!]
+  isVerified: Boolean!
+  createdAt: DateTime!
+}
+
+type UserConnection {
+  pageInfo: PageInfo!
+  edges: [UserEdge]!
+  aggregate: AggregateUser!
+}
+
+input UserCreateInput {
+  id: ID
+  name: String!
+  email: String!
+  image: String
+  mangas: MangaCreateManyWithoutUsersInput
+  isVerified: Boolean
+}
+
+input UserCreateManyWithoutMangasInput {
+  create: [UserCreateWithoutMangasInput!]
+  connect: [UserWhereUniqueInput!]
+}
+
+input UserCreateWithoutMangasInput {
+  id: ID
+  name: String!
+  email: String!
+  image: String
+  isVerified: Boolean
+}
+
+type UserEdge {
+  node: User!
+  cursor: String!
+}
+
+enum UserOrderByInput {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  email_ASC
+  email_DESC
+  image_ASC
+  image_DESC
+  isVerified_ASC
+  isVerified_DESC
+  createdAt_ASC
+  createdAt_DESC
+}
+
+type UserPreviousValues {
+  id: ID!
+  name: String!
+  email: String!
+  image: String
+  isVerified: Boolean!
+  createdAt: DateTime!
+}
+
+input UserScalarWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  image: String
+  image_not: String
+  image_in: [String!]
+  image_not_in: [String!]
+  image_lt: String
+  image_lte: String
+  image_gt: String
+  image_gte: String
+  image_contains: String
+  image_not_contains: String
+  image_starts_with: String
+  image_not_starts_with: String
+  image_ends_with: String
+  image_not_ends_with: String
+  isVerified: Boolean
+  isVerified_not: Boolean
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  AND: [UserScalarWhereInput!]
+  OR: [UserScalarWhereInput!]
+  NOT: [UserScalarWhereInput!]
+}
+
+type UserSubscriptionPayload {
+  mutation: MutationType!
+  node: User
+  updatedFields: [String!]
+  previousValues: UserPreviousValues
+}
+
+input UserSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: UserWhereInput
+  AND: [UserSubscriptionWhereInput!]
+  OR: [UserSubscriptionWhereInput!]
+  NOT: [UserSubscriptionWhereInput!]
+}
+
+input UserUpdateInput {
+  name: String
+  email: String
+  image: String
+  mangas: MangaUpdateManyWithoutUsersInput
+  isVerified: Boolean
+}
+
+input UserUpdateManyDataInput {
+  name: String
+  email: String
+  image: String
+  isVerified: Boolean
+}
+
+input UserUpdateManyMutationInput {
+  name: String
+  email: String
+  image: String
+  isVerified: Boolean
+}
+
+input UserUpdateManyWithoutMangasInput {
+  create: [UserCreateWithoutMangasInput!]
+  delete: [UserWhereUniqueInput!]
+  connect: [UserWhereUniqueInput!]
+  set: [UserWhereUniqueInput!]
+  disconnect: [UserWhereUniqueInput!]
+  update: [UserUpdateWithWhereUniqueWithoutMangasInput!]
+  upsert: [UserUpsertWithWhereUniqueWithoutMangasInput!]
+  deleteMany: [UserScalarWhereInput!]
+  updateMany: [UserUpdateManyWithWhereNestedInput!]
+}
+
+input UserUpdateManyWithWhereNestedInput {
+  where: UserScalarWhereInput!
+  data: UserUpdateManyDataInput!
+}
+
+input UserUpdateWithoutMangasDataInput {
+  name: String
+  email: String
+  image: String
+  isVerified: Boolean
+}
+
+input UserUpdateWithWhereUniqueWithoutMangasInput {
+  where: UserWhereUniqueInput!
+  data: UserUpdateWithoutMangasDataInput!
+}
+
+input UserUpsertWithWhereUniqueWithoutMangasInput {
+  where: UserWhereUniqueInput!
+  update: UserUpdateWithoutMangasDataInput!
+  create: UserCreateWithoutMangasInput!
+}
+
+input UserWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  email: String
+  email_not: String
+  email_in: [String!]
+  email_not_in: [String!]
+  email_lt: String
+  email_lte: String
+  email_gt: String
+  email_gte: String
+  email_contains: String
+  email_not_contains: String
+  email_starts_with: String
+  email_not_starts_with: String
+  email_ends_with: String
+  email_not_ends_with: String
+  image: String
+  image_not: String
+  image_in: [String!]
+  image_not_in: [String!]
+  image_lt: String
+  image_lte: String
+  image_gt: String
+  image_gte: String
+  image_contains: String
+  image_not_contains: String
+  image_starts_with: String
+  image_not_starts_with: String
+  image_ends_with: String
+  image_not_ends_with: String
+  mangas_every: MangaWhereInput
+  mangas_some: MangaWhereInput
+  mangas_none: MangaWhereInput
+  isVerified: Boolean
+  isVerified_not: Boolean
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  AND: [UserWhereInput!]
+  OR: [UserWhereInput!]
+  NOT: [UserWhereInput!]
+}
+
+input UserWhereUniqueInput {
+  id: ID
+  email: String
+}

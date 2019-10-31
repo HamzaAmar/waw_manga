@@ -1,0 +1,8 @@
+endpoint: https://eu1.prisma.sh/hamza-miloud-amar-c1d860/manga_waw/dev
+datamodel: datamodel.prisma
+generate:
+  - generator: graphql-schema
+    output: ../src/generated/schema.graphql
+hooks:
+  post-deploy:
+    - prisma generate
